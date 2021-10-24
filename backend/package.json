@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for upskill",
+  "main": "server.js",
+  "keywords": [],
+  "author": "Akshay R R",
+  "github": "akshay1027",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshay1027/SkillMastery.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akshay1027/SkillMastery/issues"
+  },
+  "homepage": "https://github.com/akshay1027/SkillMastery#readme",
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "express-validator": "^6.12.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.13.7",
+    "razorpay": "^2.0.6",
+    "shortid": "^2.2.16"
+  }
+}
