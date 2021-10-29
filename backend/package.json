@@ -7,6 +7,7 @@
   "author": "Akshay R R",
   "github": "akshay1027",
   "license": "ISC",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
