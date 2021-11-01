@@ -60,7 +60,28 @@ const checkAuthenticationOfUser = async (req, res) => {
 
 }
 
+const getUserDetailsFromDb = async (req, res) => {
+    try {
+        const { user } = req;
+
+        res.status(200).json({
+            response: {
+                email: user.email,
+                firstname: user.firstname,
+                lastname: user.lastname,
+            },
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: 'Request failed please check errorMessage key for more details',
+            errorMessage: error.message,
+        });
+    }
+};
+
 module.exports = {
     createNewUser,
-    checkAuthenticationOfUser
+    checkAuthenticationOfUser,
+    getUserDetailsFromDb
 };

@@ -5,12 +5,13 @@ const authenticationVerifier = require('../middlewares/authentication.middleware
 
 const {
     createNewUser,
-    checkAuthenticationOfUser
-    // getUserDetailsFromDb,
+    checkAuthenticationOfUser,
+    getUserDetailsFromDb,
+    addUserSkills
 } = require('../controllers/users.controller.js');
 
 router.post('/', createNewUser);
 router.post('/authenticate', checkAuthenticationOfUser);
-// router.get('/details', authenticationVerifier, getUserDetailsFromDb);
+router.get('/details', authenticationVerifier, getUserDetailsFromDb);
 
 module.exports = router;

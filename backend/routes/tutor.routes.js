@@ -4,13 +4,13 @@ const router = express.Router();
 const authenticationVerifier = require('../middlewares/authentication.middleware');
 
 const {
-    createNewUser,
-    checkAuthenticationOfUser,
-    // getUserDetailsFromDb,
-} = require('../controllers/users.controller.js');
+    getAllTutors,
+    getTutorById
+} = require('../controllers/tutors.controller.js');
 
-router.post('/', createNewUser);
-router.post('/authenticate', checkAuthenticationOfUser);
+router.get('/', getAllTutors);
+router.get('/:id', authenticationVerifier, getTutorById);
+// router.post('/:id/book-demo', authenticationVerifier, bookDemoWithTutor);
 // router.get('/details', authenticationVerifier, getUserDetailsFromDb);
 
 module.exports = router;
