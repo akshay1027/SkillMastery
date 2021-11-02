@@ -33,7 +33,8 @@ const UserSchema = new Schema(
         offlineMode: { type: Boolean },
         audience: { type: String },
         experience: { type: String },
-        fee: { type: String }
+        fee: { type: String },
+        about: { type: String }
     }
 );
 

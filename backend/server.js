@@ -8,7 +8,7 @@ const authenticationRoutes = require('./middlewares/authentication.middleware');
 
 const userRoutes = require('./routes/user.routes');
 const tutorsRoutes = require('./routes/tutor.routes');
-const skillsRoutes = require('./routes/skills.routes');
+// const skillsRoutes = require('./routes/skills.routes');
 
 // RESTful APIs
 const app = express();
@@ -43,7 +43,6 @@ app.use('/api/tutors', tutorsRoutes); // all the tutors routes. contains public 
 
 // Authentication verifier middleware, please do not move. Below routes are private.
 app.use(authenticationRoutes);
-app.use('/api/skills', skillsRoutes);
 
 // server config listen to PORT
 const PORT = process.env.PORT || 5001;

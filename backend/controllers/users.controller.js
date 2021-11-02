@@ -25,7 +25,7 @@ const createNewUser = async (req, res) => {
 
         const token = getToken(NewUser._id);
 
-        res.status(201).json({
+        res.status(200).json({
             response: {
                 token
             }
@@ -80,8 +80,53 @@ const getUserDetailsFromDb = async (req, res) => {
     }
 };
 
+const createUserSkills = async (req, res) => {
+    try {
+        const { user } = req;
+        const { skills } = req.body;
+        const userData = await UserModel.findById({ id: user.id })
+
+        userData.skills.push(...skills);
+
+        const newUserData = new UserModel(userData);
+        await newUserData.save();
+
+        res.status(200).json({ message: 'skills added' })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: 'Request failed please check errorMessage key for more details',
+            errorMessage: error.message,
+        });
+    }
+}
+
+// to remove duplicate skills from array : https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/
+const updateUserSkills = async (req, res) => {
+    try {
+        const { user } = req;
+        const { skills } = req.body;
+        const userData = await UserModel.findById({ id: user.id })
+
+        userData.skills.push(...skills);
+
+        const newUserData = new UserModel(userData);
+        await newUserData.save();
+
+        res.status(200).json({ message: 'skills updated' })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: 'Request failed please check errorMessage key for more details',
+            errorMessage: error.message,
+        });
+    }
+}
+
 module.exports = {
     createNewUser,
     checkAuthenticationOfUser,
-    getUserDetailsFromDb
+    getUserDetailsFromDb,
+    createUserSkills,
+    updateUserSkills
 };

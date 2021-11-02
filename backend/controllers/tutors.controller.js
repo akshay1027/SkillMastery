@@ -3,7 +3,7 @@ const UserModel = require('../models/user.model');
 const getAllTutors = async (req, res) => {
     try {
         // to get all tutors alone from users.
-        const tutors = UserModel.find({ teach: true });
+        const tutors = await UserModel.find({ teach: true });
         res.status(201).json({ tutors });
 
     } catch (error) {
@@ -17,8 +17,19 @@ const getAllTutors = async (req, res) => {
 const getTutorById = async (req, res) => {
     try {
         const { id } = req.body;
-        const tutor = UserModel.findById({ id });
+        const tutor = await UserModel.findById({ id });
         res.status(201).json({ tutor });
+
+    } catch (error) {
+        res.status(500).json({
+            message: 'Something went wrong',
+            errorMessage: error.message
+        })
+    }
+}
+
+const getAllReviewsForTutor = async (req, res) => {
+    try {
 
     } catch (error) {
         res.status(500).json({
