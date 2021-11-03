@@ -1,4 +1,5 @@
 const UserModel = require('../models/user.model');
+const ReviewModel = require('../models/review.model');
 
 const getAllTutors = async (req, res) => {
     try {
@@ -16,7 +17,7 @@ const getAllTutors = async (req, res) => {
 
 const getTutorById = async (req, res) => {
     try {
-        const { id } = req.body;
+        const { tutorId } = req.params;
         const tutor = await UserModel.findById({ id });
         res.status(201).json({ tutor });
 
@@ -30,7 +31,15 @@ const getTutorById = async (req, res) => {
 
 const getAllReviewsForTutor = async (req, res) => {
     try {
+        const reviews = [];
+        const { tutorId } = req.params;
 
+        const allReviews = await ReviewModel.find({});
+        for (const reviewId of allReviews) {
+            isReviewExisting = ReviewModel.findById({ id: tutorId })
+            reviews.push(isReviewExisting);
+        }
+        res.status(200).json({})
     } catch (error) {
         res.status(500).json({
             message: 'Something went wrong',

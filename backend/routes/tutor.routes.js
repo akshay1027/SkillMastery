@@ -10,8 +10,8 @@ const {
 } = require('../controllers/tutors.controller.js');
 
 router.get('/', getAllTutors);
-router.get('/:id', authenticationVerifier, getTutorById);
-router.get('/reviews', getAllReviewsForTutor)
+router.get('/:tutorId', authenticationVerifier, getTutorById);
+router.get('/reviews/:tutorId', getAllReviewsForTutor)
 // router.post('/:id/book-demo', authenticationVerifier, bookDemoWithTutor);
 // router.get('/details', authenticationVerifier, getUserDetailsFromDb);
 

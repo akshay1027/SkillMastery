@@ -9,8 +9,8 @@ const {
     getUserDetailsFromDb,
     createUserSkills,
     updateUserSkills,
-    createReviewForTutor,
-    updateReviewForTutor
+    createReviewForTutor
+    // updateReviewForTutor
 } = require('../controllers/users.controller.js');
 
 router.post('/', createNewUser);
@@ -21,5 +21,5 @@ router.post('/skills/:userId', authenticationVerifier, createUserSkills)
 router.put('/skills/:userId', authenticationVerifier, updateUserSkills);
 
 router.post('/review/:tutorId', authenticationVerifier, createReviewForTutor);
-router.put('/review/:tutorId', authenticationVerifier, updateReviewForTutor);
+// router.put('/review/:tutorId', authenticationVerifier, updateReviewForTutor);
 module.exports = router;

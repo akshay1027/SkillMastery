@@ -20,13 +20,14 @@ const UserSchema = new Schema(
             { type: String }
         ],
         teach: { type: Boolean },
-        reviews: [
-            {
-                userName: { type: String },
-                profileImage: { type: String },
-                message: { type: String }
-            }
-        ],
+        // reviews: [
+        //     {
+        //         userName: { type: String },
+        //         profileImage: { type: String },
+        //         message: { type: String }
+        //     }
+        // ],
+        review: { type: Schema.Types.ObjectId, ref: 'Review' },
         address: [
             { type: String }
         ],
@@ -38,4 +39,4 @@ const UserSchema = new Schema(
     }
 );
 
-module.exports = UserModel = model('user', UserSchema);
+module.exports = UserModel = model('User', UserSchema);

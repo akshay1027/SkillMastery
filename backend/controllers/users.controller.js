@@ -3,6 +3,7 @@ const JWT_KEY = process.env.JWT_KEY;
 const bcrypt = require('bcrypt');
 
 const UserModel = require('../models/user.model');
+const ReviewModel = require('../models/review.model');
 
 const getToken = require('../utils/getToken');
 
@@ -86,7 +87,7 @@ const createUserSkills = async (req, res) => {
         const { skills } = req.body;
         const userData = await UserModel.findById({ id: user.id })
 
-        userData.skills.push(...skills);
+        userData.skills.push(skills);
 
         const newUserData = new UserModel(userData);
         await newUserData.save();
@@ -108,7 +109,8 @@ const updateUserSkills = async (req, res) => {
         const { skills } = req.body;
         const userData = await UserModel.findById({ id: user.id })
 
-        userData.skills.push(...skills);
+        // userData.skills.push(...skills);
+        userData.skills.push(skills);
 
         const newUserData = new UserModel(userData);
         await newUserData.save();
@@ -123,10 +125,52 @@ const updateUserSkills = async (req, res) => {
     }
 }
 
+const createReviewForTutor = async (req, res) => {
+    try {
+        const tutorId = req.params.tutorId;
+        const { message } = req.body; // this contains only message
+        const { user } = req;
+
+        // create an object of the user who made the review, the message and the tutorId(just incase i might have to show all the reviews a user has made)
+        const review = {
+            userName: user.userName,
+            message: message,
+            tutorId: tutorId
+        };
+
+        // save the review to review collection
+        const saveReview = new ReviewModel(review);
+        await saveReview.save();
+
+        // find the user who made the review and the tutor on whom the review is made
+        const userData = await UserModel.findById({ id: user._id });
+        const tutorData = await UserModel.findById({ id: tutorId });
+
+        // update the review in both user and tutor document seperately
+        tutorData.review.push(saveReview._id);
+        userData.review.push(saveReview._id);
+
+        // save the documents of user and tutor to db
+        const newUserData = new UserModel(userData);
+        await newUserData.save();
+        const newTutorData = new UserModel(tutorData);
+        await newTutorData.save();
+
+        res.status(200).json({ message: 'Review added!' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: 'Request failed please check errorMessage key for more details',
+            errorMessage: error.message,
+        });
+    }
+}
+
 module.exports = {
     createNewUser,
     checkAuthenticationOfUser,
     getUserDetailsFromDb,
     createUserSkills,
-    updateUserSkills
+    updateUserSkills,
+    createReviewForTutor
 };

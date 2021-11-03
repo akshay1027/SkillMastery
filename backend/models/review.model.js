@@ -5,11 +5,11 @@ const ReviewSchema = new Schema(
         reviews: [
             {
                 userName: { type: String },
-                profileImage: { type: String },
-                message: { type: String }
+                message: { type: String },
+                tutorId: { type: String }
             }
         ]
     }
 )
 
-module.exports = ReviewModel = model('review', ReviewSchema);
+module.exports = ReviewModel = model('Review', ReviewSchema);
