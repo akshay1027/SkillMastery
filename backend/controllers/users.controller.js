@@ -147,7 +147,7 @@ const createReviewForTutor = async (req, res) => {
         const tutorData = await UserModel.findById({ id: tutorId });
 
         // update the review in both user and tutor document seperately
-        tutorData.review.push(saveReview._id);
+        tutorData.reviewTutor.push(saveReview._id);
         userData.review.push(saveReview._id);
 
         // save the documents of user and tutor to db
