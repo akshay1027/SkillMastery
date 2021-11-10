@@ -11,10 +11,15 @@ export const AppTheme = {
     palette: {
         type: 'light',
         primary: {
-            main: '#ab96ff'
+            main: '#49a0eb',
+            dark: '#177ad1'
         },
         secondary: {
-            main: '#e6d5f7'
+            main: '#0d3344',
+            dark: '#285780'
+        },
+        background: {
+            default: '#fff'
         }
     },
     spacing: 8,
