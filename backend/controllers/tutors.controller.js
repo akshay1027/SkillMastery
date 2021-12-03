@@ -31,15 +31,24 @@ const getTutorById = async (req, res) => {
 
 const getAllReviewsForTutor = async (req, res) => {
     try {
-        const reviews = [];
+        // const reviews = [];
         const { tutorId } = req.params;
 
-        const allReviews = await ReviewModel.find({});
-        for (const reviewId of allReviews) {
-            isReviewExisting = ReviewModel.findById({ id: tutorId })
-            reviews.push(isReviewExisting);
+        const tutorReviews = await ReviewModel.find({ tutorId: tutorId });
+        /* 
+            review = {
+                userName,
+                message,
+                tutorId
+            }
+        */
+        // looping over all tutor reviews and inserting profile image of user.
+        for (const review of tutorReviews) {
+            const user = await UserModel.findOne({ userName: review.userName });
+            tutorReviews.profileImage = user.profileImage;
         }
-        res.status(200).json({})
+
+        res.status(200).json({ tutorReviews });
     } catch (error) {
         res.status(500).json({
             message: 'Something went wrong',
@@ -50,5 +59,6 @@ const getAllReviewsForTutor = async (req, res) => {
 
 module.exports = {
     getAllTutors,
-    getTutorById
+    getTutorById,
+    getAllReviewsForTutor
 };

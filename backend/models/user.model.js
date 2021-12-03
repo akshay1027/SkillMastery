@@ -27,7 +27,8 @@ const UserSchema = new Schema(
         //         message: { type: String }
         //     }
         // ],
-        review: { type: Schema.Types.ObjectId, ref: 'Review' },
+        reviews: { type: Schema.Types.ObjectId, ref: 'Review' },
+        reviewsTutor: { type: Schema.Types.ObjectId, ref: 'Review' },
         address: [
             { type: String }
         ],

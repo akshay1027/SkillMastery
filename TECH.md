@@ -24,3 +24,17 @@
 - Composition implies a relationship where the child cannot exist independent of the parent. Example: House (parent) and Room (child). Rooms don't exist separate to a House.
 
 Aggregation = use referenced schema, Composition = use embedded schema
+
+- What if tutor makes a review on anther tutor? 
+    problem/bug: The review will be saved in the tutor s 'review field'. But am taking all the reviews from the 'review field' which implies the response will also contain the reviews made by the tutor along witb the reviews made by users for the tutor.
+
+    solution: Have two seperate fields in your document, one for reviews given by the users and one for users given by the tutor.
+
+
+FRONTEND:
+
+- If a component is taking seven different props, that might be a sign that it’s doing too much. 
+
+- Avoid large render methods.
+
+- when state changes, the whole functional component is re-rendered. Try hooks like useCallBack, useMemo, useEffect to optimse re-renders.
