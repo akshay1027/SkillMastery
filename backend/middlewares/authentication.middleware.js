@@ -6,6 +6,7 @@ const authenticationVerifier = async (req, res, next) => {
     try {
         const tokenWithBearer = req.headers.authorization;
         console.log(tokenWithBearer)
+        // const token = tokenWithBearer.split(' ')[1]; => TokenArray = tokenWithBearer.split(' '); + token = TokenArray[1];
         const token = tokenWithBearer.split(' ')[1];
         console.log(token)
         const decoded = jwt.verify(token, JWT_KEY);

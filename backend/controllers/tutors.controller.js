@@ -18,7 +18,7 @@ const getAllTutors = async (req, res) => {
 const getTutorById = async (req, res) => {
     try {
         const { tutorId } = req.params;
-        const tutor = await UserModel.findById({ id });
+        const tutor = await UserModel.findById({ tutorId });
         res.status(201).json({ tutor });
 
     } catch (error) {
