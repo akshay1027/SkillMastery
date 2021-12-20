@@ -1,14 +1,16 @@
 import { Box, Button } from '@material-ui/core';
 import React from 'react';
+import Navbar from '../components/navbar';
 
-const homePage = () => {
+const HomePage = () => {
     return (
         <>
             <Box>
-                <Button variant="contained" color="primary"> Akshay </Button>
+                <Navbar />
+                {/* <Button variant="contained" color="primary"> Akshay </Button> */}
             </Box>
         </>
     );
 };
 
-export default homePage;
+export default HomePage;

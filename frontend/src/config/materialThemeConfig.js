@@ -19,7 +19,7 @@ export const AppTheme = {
             dark: '#285780'
         },
         background: {
-            default: '#fff'
+            default: '#f2f2f2'
         }
     },
     spacing: 8,
