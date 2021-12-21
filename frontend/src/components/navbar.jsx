@@ -16,9 +16,9 @@ export const mainDrawerWidth = 300;
 const useStyles = makeStyles((theme) =>
     createStyles({
         navbar: {
-            height: '10px',
-            [theme.breakpoints.dowm('md')]: {
-                height: '20px'
+            height: '20px',
+            [theme.breakpoints.up('lg')]: {
+                height: '50px'
             }
         }
     })
@@ -31,17 +31,17 @@ const Navbar = ({ isBoard }) => {
     // const userName = localStorage.getItem('name') ? localStorage.getItem('name') : 'user';
 
     return (
-        <>
-            <AppBar position="sticky" style={{}}>
+        <Box style={{ marginBottom: '120px' }}>#49a0eb
+            <AppBar color='primary' style={{ background: 'linear-gradient( 95.84deg, #5054cf 0%, #49a0eb 100% )' }}>
                 <Toolbar>
                     <Box display="flex" alignItems='center' justifyContent='space-between' className={classes.navbar}>
                         <Typography style={{ fontWeight: 700, fontSize: '22px', marginRight: '5px' }} >
-                            Hello
+                            Skill Mastery
                         </Typography>
                     </Box>
                 </Toolbar>
             </AppBar>
-        </>
+        </Box>
     );
 };
 

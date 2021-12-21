@@ -20,3 +20,20 @@
     margin-bottom: 20px;
     padding: 15px 40px;
 }
+
+:root {
+    --color-divider: #E9EEF2;
+    --color-purple-dark: #7F6EFC;
+    --color-light-green: #E6F8F2;
+    --color-light-orange: #FFEBCE;
+    --color-light-red: #FFDAE1;
+    --color-light-blue: #E5EDFA;
+    --color-turquoise: #21C5C6;
+    --color-green: #08bd80;
+    --color-green-focus: #009965;
+    --color-red: #eb5757;
+    --color-accent-green: #08bd80;
+    --color-combat: #2D81F7;
+    --color-lmp: #5054cf;
+    --color-gold: #F19731;
+}
