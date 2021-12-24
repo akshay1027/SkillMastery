@@ -5,7 +5,7 @@ const HomePage = () => {
     return (
         <>
             <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Typography style={{ background: 'linear-gradient( 95.84deg, #5054cf 0%, #08bd80 100% )', padding: '10px 20px', borderRadius: '25px', color: 'white' }}>Learn and Master skills the right way!</Typography>
+                <Typography style={{ background: 'linear-gradient( 95.84deg, #5054cf 0%, #08bd80 100% )', padding: '10px 20px', borderRadius: '25px', color: 'white', fontWeight: 500 }}>Learn and Master skills the right way!</Typography>
             </Box>
         </>
     );

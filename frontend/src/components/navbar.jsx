@@ -35,7 +35,7 @@ const Navbar = ({ isBoard }) => {
             <AppBar color='primary' style={{ background: 'linear-gradient( 95.84deg, #5054cf 0%, #49a0eb 100% )' }}>
                 <Toolbar>
                     <Box display="flex" alignItems='center' justifyContent='space-between' className={classes.navbar}>
-                        <Typography style={{ fontWeight: 700, fontSize: '22px', marginRight: '5px' }} >
+                        <Typography style={{ fontWeight: 900, fontSize: '22px', marginRight: '5px' }} >
                             Skill Mastery
                         </Typography>
                     </Box>
