@@ -32,7 +32,7 @@ const Navbar = ({ isBoard }) => {
 
     return (
         <Box style={{ marginBottom: '120px' }}>#49a0eb
-            <AppBar color='primary' style={{ background: 'linear-gradient( 95.84deg, #5054cf 0%, #49a0eb 100% )' }}>
+            <AppBar color='primary' style={{ background: 'linear-gradient( 95.84deg, #5054cf 0%, #7F6EFC 100% )', color: 'black' }}>
                 <Toolbar>
                     <Box display="flex" alignItems='center' justifyContent='space-between' className={classes.navbar}>
                         <Typography style={{ fontWeight: 900, fontSize: '22px', marginRight: '5px' }} >

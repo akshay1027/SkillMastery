@@ -12,6 +12,9 @@ import { StylesContext } from '@material-ui/styles';
 import Navbar from './components/navbar';
 
 const HomePage = lazy(() => import('./pages/homePage'));
+const LoginPage = lazy(() => import('./pages/loginPage'));
+const RegisterPage = lazy(() => import('./pages/registerPage'));
+const TutorsPage = lazy(() => import('./pages/tutorsPage'));
 
 const useStyles = makeStyles(theme => ({
     body: {
@@ -28,6 +31,9 @@ const App = () => {
                 <Route path="/" component={Navbar} />
                 <Suspense fallback={<LinearProgress />}>
                     <Route exact path="/" component={HomePage} />
+                    <Route exact path="/login" component={LoginPage} />
+                    <Route exact path="/register" component={RegisterPage} />
+                    <Route exact path="/tutors" component={TutorsPage} />
                 </Suspense>
             </Router>
         </>

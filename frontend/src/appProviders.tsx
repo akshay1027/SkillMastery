@@ -6,7 +6,7 @@ import App from './App';
 import { AppTheme } from './config/materialThemeConfig';
 
 const AppProviders = () => {
-    const appliedTheme = createTheme(AppTheme);
+    const appliedTheme = createTheme(AppTheme as any);
     return (
         <ThemeProvider theme={appliedTheme}>
             <CssBaseline />
