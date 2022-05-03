@@ -11,12 +11,12 @@ export const AppTheme = {
     palette: {
         type: 'light',
         primary: {
-            main: '#7F6EFC',
-            dark: '#5054cf'
+            main: '#49a0eb',
+            dark: '#31343c'
         },
         secondary: {
-            main: '#0d3344',
-            dark: '#285780'
+            main: '#6fa5fc',
+            dark: '#07222e'
         },
         background: {
             default: '#f2f2f2'

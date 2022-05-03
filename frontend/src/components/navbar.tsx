@@ -29,10 +29,10 @@ const Navbar = ({ isBoard }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     // const userName = localStorage.getItem('name') ? localStorage.getItem('name') : 'user';
-
+    // 'linear-gradient( 95.84deg, #6F6EFC 0%, #7F6EFC 100% )'
     return (
-        <Box style={{ marginBottom: '120px' }}>#49a0eb
-            <AppBar color='primary' style={{ background: 'linear-gradient( 95.84deg, #5054cf 0%, #7F6EFC 100% )', color: 'black' }}>
+        <Box style={{ marginBottom: '120px' }}>
+            <AppBar color='primary' style={{ background: 'rgba(0, 0, 0, 0.87)', color: '#49a0eb' }}>
                 <Toolbar>
                     <Box display="flex" alignItems='center' justifyContent='space-between' className={classes.navbar}>
                         <Typography style={{ fontWeight: 900, fontSize: '22px', marginRight: '5px' }} >

@@ -4,13 +4,16 @@ import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
 
 import App from './App';
 import { AppTheme } from './config/materialThemeConfig';
+import Wrapper from 'utiles/wrapper';
 
 const AppProviders = () => {
     const appliedTheme = createTheme(AppTheme as any);
     return (
         <ThemeProvider theme={appliedTheme}>
-            <CssBaseline />
-            <App />
+            <Wrapper>
+                <CssBaseline />
+                <App />
+            </Wrapper>
         </ThemeProvider>
     );
 };

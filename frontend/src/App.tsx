@@ -6,11 +6,9 @@ import {
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { StylesContext } from '@material-ui/styles';
 
-// // Set jwt toke to header
-// import setAuthHeader from './utils/authHeader';
-
 import Navbar from './components/navbar';
 
+const MainAppBar = lazy(() => import('./components/mainAppBar'));
 const HomePage = lazy(() => import('./pages/homePage'));
 const LoginPage = lazy(() => import('./pages/loginPage'));
 const RegisterPage = lazy(() => import('./pages/registerPage'));
@@ -28,8 +26,8 @@ const App = () => {
     return (
         <>
             <Router>
-                <Route path="/" component={Navbar} />
                 <Suspense fallback={<LinearProgress />}>
+                    <Route path='/' component={MainAppBar} />
                     <Route exact path="/" component={HomePage} />
                     <Route exact path="/login" component={LoginPage} />
                     <Route exact path="/register" component={RegisterPage} />
