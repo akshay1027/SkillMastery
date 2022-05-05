@@ -19,7 +19,6 @@ const SignInScreen = () => {
     });
 
     const handleSubmit = async (e: any) => {
-        // e.preventDefault();
         e.preventDefault();
         let validateInput = true as Boolean;
         if (email?.length <= 4) {
