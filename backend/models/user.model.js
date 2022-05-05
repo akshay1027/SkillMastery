@@ -27,8 +27,8 @@ const UserSchema = new Schema(
         //         message: { type: String }
         //     }
         // ],
-        reviews: { type: Schema.Types.ObjectId, ref: 'Review' },
-        reviewsTutor: { type: Schema.Types.ObjectId, ref: 'Review' },
+        reviews: { type: Schema.Types.ObjectId, ref: 'Review' }, // reviews given by the user
+        reviewsTutor: { type: Schema.Types.ObjectId, ref: 'Review' }, // reviews given got the user, if he/she is a teacher
         address: [
             { type: String }
         ],

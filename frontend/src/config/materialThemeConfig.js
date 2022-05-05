@@ -12,23 +12,23 @@ export const AppTheme = {
         type: 'light',
         primary: {
             main: '#49a0eb',
-            dark: '#177ad1'
+            dark: '#31343c'
         },
         secondary: {
-            main: '#0d3344',
-            dark: '#285780'
+            main: '#6fa5fc',
+            dark: '#07222e'
         },
         background: {
-            default: '#fff'
+            default: '#f2f2f2'
         }
     },
     spacing: 8,
     typography: {
-        fontFamily: '"Poppins", sans-serif',
-        fontSize: 14,
-        fontWeightLight: 300,
-        fontWeightRegular: 400,
-        fontWeightMedium: 500
+        fontFamily: '"Poppins", sans-serif'
+        // fontSize: 14,
+        // fontWeightLight: 300,
+        // fontWeightRegular: 400,
+        // fontWeightMedium: 500
     }
 };
 
