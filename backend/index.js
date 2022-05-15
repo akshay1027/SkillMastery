@@ -33,6 +33,7 @@ mongoose.connect(process.env.MONGO_URI, mongodbConnectionOptions, (error) => {
     console.log("mongoDB working succesfully");
 });
 
+
 app.get('/', (req, res) => {
     res.send('Welcome to the skillMastery backend');
 });
