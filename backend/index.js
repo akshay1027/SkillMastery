@@ -6,8 +6,9 @@ const dotenv = require('dotenv');  //  Keep sensitive data
 // Routes 
 const authenticationRoutes = require('./middlewares/authentication.middleware');
 
-const userRoutes = require('./routes/user.routes');
-const tutorsRoutes = require('./routes/tutor.routes');
+const appRoutes = require('./routes/v1/index');
+const userRoutes = require('./routes/v1/user.routes');
+const tutorsRoutes = require('./routes/v1/tutor.routes');
 // const skillsRoutes = require('./routes/skills.routes');
 
 // RESTful APIs
@@ -33,16 +34,16 @@ mongoose.connect(process.env.MONGO_URI, mongodbConnectionOptions, (error) => {
     console.log("mongoDB working succesfully");
 });
 
-
+// check if server is running
 app.get('/', (req, res) => {
     res.send('Welcome to the skillMastery backend');
 });
 
 // These endpoint are public routes
-app.use('/api/user', userRoutes);
-app.use('/api/tutors', tutorsRoutes); // all the tutors routes. contains public and private routes!
+app.use('/api', appRoutes);
+// app.use('/api/tutors', tutorsRoutes); // all the tutors routes. contains public and private routes!
 
-// Authentication verifier middleware, please do not move. Below routes are private.
+// Authentication verifier middleware, please do not move.
 app.use(authenticationRoutes);
 
 // server config listen to PORT

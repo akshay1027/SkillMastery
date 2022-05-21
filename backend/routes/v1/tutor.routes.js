@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const authenticationVerifier = require('../middlewares/authentication.middleware');
+const authenticationVerifier = require('../../middlewares/authentication.middleware');
 
 const {
     getAllTutors,
     getTutorById,
     getAllReviewsForTutor
-} = require('../controllers/tutors.controller.js');
+} = require('../../controllers/tutors.controller.js');
 
 router.get('/', getAllTutors);
 router.get('/:tutorId', authenticationVerifier, getTutorById);
