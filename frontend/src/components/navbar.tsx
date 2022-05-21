@@ -36,7 +36,7 @@ const Navbar = ({ isBoard }) => {
                 <Toolbar>
                     <Box display="flex" alignItems='center' justifyContent='space-between' className={classes.navbar}>
                         <Typography style={{ fontWeight: 900, fontSize: '22px', marginRight: '5px' }} >
-                            Skill Mastery
+                            AstroLearn
                         </Typography>
                     </Box>
                 </Toolbar>

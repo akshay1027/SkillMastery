@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const authenticationVerifier = require('../middlewares/authentication.middleware');
+const authenticationVerifier = require('../../middlewares/authentication.middleware');
 
 const {
     createNewUser,
@@ -11,7 +11,7 @@ const {
     updateUserSkills,
     createReviewForTutor
     // updateReviewForTutor
-} = require('../controllers/users.controller.js');
+} = require('../../controllers/users.controller.js');
 
 router.post('/', createNewUser);
 router.post('/authenticate', checkAuthenticationOfUser);

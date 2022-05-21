@@ -46,7 +46,7 @@ const SignInScreen = () => {
         }
 
         const res = await api.post(
-            '/api/auth/signin',
+            '/api/auth/signup',
             {
                 email: email.trim(),
                 password: password.trim(),

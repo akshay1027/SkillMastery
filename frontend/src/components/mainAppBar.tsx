@@ -76,7 +76,7 @@ const MainAppBar = () => {
                 <Toolbar>
                     <Box display="flex" alignItems='center' justifyContent='space-between' style={{ width: '100%', height: '100%' }}>
                         <Typography className={classes.title} style={{ fontWeight: 700, fontSize: '27px' }} >
-                            Skill Mastery
+                            AstroLearn
                         </Typography>
                         <IconButton edge="start" color="inherit" aria-label="menu" onClick={(e) => setIsOpen(!isOpen)}>
                             <MenuIcon className={classes.icon} style={{ fontSize: '32px' }} />
@@ -88,14 +88,12 @@ const MainAppBar = () => {
                 </Toolbar>
             </AppBar>
             {
-                isOpen
-                    ? <nav className={classes.drawer}>
-                        <Drawer classes={{ paper: classes.drawerPaper }} variant='permanent' anchor='right'>
-                            <MainDrawerContent isOpen={isOpen} setIsOpen={setIsOpen} />
-                        </Drawer>
-                    </nav>
-                    : <>
-                    </>
+                isOpen &&
+                <nav className={classes.drawer}>
+                    <Drawer classes={{ paper: classes.drawerPaper }} variant='permanent' anchor='right'>
+                        <MainDrawerContent isOpen={isOpen} setIsOpen={setIsOpen} />
+                    </Drawer>
+                </nav>
             }
 
         </>

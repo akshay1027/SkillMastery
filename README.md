@@ -61,6 +61,7 @@ Number of views per tutor and/or user page!
 Ability for user and tutor to exchange messages or request demo!
 
 
+USP = Promote cohort based learning
 
 
 

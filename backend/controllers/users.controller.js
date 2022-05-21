@@ -19,7 +19,7 @@ const createNewUser = async (req, res) => {
         }
 
         const salt = await bcrypt.genSalt(10);
-        userData.password = bcrypt.hashSync(userData.password, salt);
+        userData.password = bcrypt.hash(userData.password, salt);
 
         const NewUser = new UserModel(userData);
         await NewUser.save();
