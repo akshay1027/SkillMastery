@@ -1,4 +1,4 @@
-const httpStatusCodes = {
+const httpStatus = {
     "OK": 200,
     "CREATED": 201,
     "NON_AUTHORITATIVE_INFORMATION": 203,
@@ -7,8 +7,9 @@ const httpStatusCodes = {
     "PAYMENT_REQUIRED": 402,
     "FORBIDDEN": 403,
     "NOT_FOUND": 404,
+    "CONFLICT": 409,
     "INTERNAL_SERVER_ERROR": 500,
     "SERVICE_UNAVAILABLE": 503
 }
 
-module.exports = httpStatusCodes;
+module.exports = httpStatus;
