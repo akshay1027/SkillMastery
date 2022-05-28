@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const JWT_KEY = process.env.JWT_KEY;
 const UserModel = require('../models/user.model');
+const httpStatusCodes = require('../utils/httpStatusCode');
+const httpStatus = require('../utils/httpStatusCode');
 
 const authenticationVerifier = async (req, res, next) => {
     try {
@@ -15,7 +17,7 @@ const authenticationVerifier = async (req, res, next) => {
         const user = await UserModel.findOne(userId);
 
         if (!user) {
-            res.status(401).json({ message: 'Unauthorised access' })
+            res.status(httpStatus.UNAUTHORIZED).json({ message: 'Unauthorised access' })
             return;
         }
 
@@ -23,7 +25,7 @@ const authenticationVerifier = async (req, res, next) => {
         next();
     } catch (error) {
         console.log('error =', error);
-        res.status(401).json({ message: 'Token is invalid' });
+        res.status(httpStatus.UNAUTHORIZED).json({ message: 'Token is invalid' });
     }
 }
 

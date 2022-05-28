@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const UserSchema = new Schema(
     {
-        name: { type: String, required: true },
+        name: { type: String },
         userName: {
             type: String,
             required: true,
@@ -20,22 +20,17 @@ const UserSchema = new Schema(
             { type: String }
         ],
         teach: { type: Boolean },
-        // reviews: [
-        //     {
-        //         userName: { type: String },
-        //         profileImage: { type: String },
-        //         message: { type: String }
-        //     }
-        // ],
         reviews: { type: Schema.Types.ObjectId, ref: 'Review' }, // reviews given by the user
         reviewsTutor: { type: Schema.Types.ObjectId, ref: 'Review' }, // reviews given got the user, if he/she is a teacher
         address: [
             { type: String }
         ],
         offlineMode: { type: Boolean },
-        audience: { type: String },
+        Tags: [
+            { type: String }
+        ],
         experience: { type: String },
-        fee: { type: String },
+        fee: { type: Number },
         about: { type: String }
     }
 );
