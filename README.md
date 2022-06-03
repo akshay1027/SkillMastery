@@ -1,3 +1,13 @@
+Backend :
+- [x] folder setup
+- [ ] global error handling, middleware
+- [ ] sign in, sign up service
+- [ ] token service, no refresh token yet
+
+
+Frontend :
+
+ 
 Teacher: name  
          username  
          email  

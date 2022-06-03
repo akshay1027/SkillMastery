@@ -78,7 +78,33 @@ const signInUser = async (userData) => {
     }
 };
 
+const changePassword = async (data, user) => {
+    try {
+        const { currentPassword, newPassword } = data;
+
+        const isPasswordValid = await bcrypt.compare(currentPassword, user?.password);
+        if (!isPasswordValid) {
+            throw new ErrorResponse(httpStatus.FORBIDDEN, 'Current password is incorrect!');
+        }
+
+        const userData = await UserModel.findById({ id: user.id })
+
+        const salt = await bcrypt.genSalt(10);
+        userData.password = await bcrypt.hash(newPassword, salt);
+        userData.save();
+
+        return {
+            status: 'success',
+            message: 'Account password has been updated successfully'
+        }
+
+    } catch (error) {
+        throw new ErrorResponse(500, 'Password not changed');
+    }
+}
+
 module.exports = {
     createNewUser,
-    signInUser
+    signInUser,
+    changePassword
 }

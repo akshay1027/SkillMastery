@@ -21,6 +21,7 @@ const authenticationVerifier = async (req, res, next) => {
             return;
         }
 
+        // store user object inside request object
         req.user = user;
         next();
     } catch (error) {
