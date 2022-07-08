@@ -1,6 +1,8 @@
 const UserModel = require('../models/user.model');
 const ReviewModel = require('../models/review.model');
 
+const ErrorResponse = require('../utils/errorResponse');
+
 // const getUserDetails = async (user) => {
 //     try {
 //         return {
@@ -14,24 +16,26 @@ const ReviewModel = require('../models/review.model');
 //     }
 // };
 
-const createUserSkills = async (req, res) => {
+const createUserSkills = async (user, skills) => {
     try {
-        const { user } = req;
-        const { skills } = req.body;
+
         const userData = await UserModel.findById({ id: user.id })
 
-        userData.skills.push(skills);
+        // for (let skill in skills) {
+        //     userData.skills.push(skill);
+        // }
+        userData.skills.push(...skills);
 
         const newUserData = new UserModel(userData);
         await newUserData.save();
 
-        res.status(200).json({ message: 'skills added' })
+        return {
+            status: 'successful',
+            message: 'skills added'
+        }
     } catch (error) {
         console.error(error);
-        res.status(500).json({
-            message: 'Request failed please check errorMessage key for more details',
-            errorMessage: error.message,
-        });
+        throw new ErrorResponse(500, 'Request failed, internal server error');
     }
 }
 
@@ -52,10 +56,7 @@ const updateUserSkills = async (req, res) => {
         res.status(200).json({ message: 'skills updated' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({
-            message: 'Request failed please check errorMessage key for more details',
-            errorMessage: error.message,
-        });
+        throw new ErrorResponse(500, 'Request failed, internal server error');
     }
 }
 
@@ -93,15 +94,11 @@ const createReviewForTutor = async (req, res) => {
         res.status(200).json({ message: 'Review added!' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({
-            message: 'Request failed please check errorMessage key for more details',
-            errorMessage: error.message,
-        });
+        throw new ErrorResponse(500, 'Request failed, internal server error');
     }
 }
 
 module.exports = {
-    getUserDetails,
     createUserSkills,
     updateUserSkills,
     createReviewForTutor

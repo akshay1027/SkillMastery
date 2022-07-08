@@ -29,9 +29,9 @@ const createNewUser = async (userData) => {
 
         if (isUserExistingEmail || isUserExistingUserName) {
             // console.log(user);
-            throw new ErrorResponse(httpStatus.CONFLICT, "Account already exists for this email or/and phone number");
+            throw new ErrorResponse(httpStatus.CONFLICT, "Account already exists for this email and/or username");
         }
-        const salt = await bcrypt.genSalt(10);
+        const salt = await bcrypt.genSalt(5);
         userData.password = await bcrypt.hash(password, salt);
 
         const newUser = new UserModel(userData);
@@ -45,7 +45,7 @@ const createNewUser = async (userData) => {
 
     } catch (error) {
         console.log(error)
-        throw new ErrorResponse(httpStatus.UNAUTHORIZED, 'Account creation failed');
+        throw new ErrorResponse(httpStatus.UNAUTHORIZED, error);
     }
 };
 
@@ -70,11 +70,11 @@ const signInUser = async (userData) => {
         const token = getToken(user._id);
 
         return {
-            userName,
+            username: user.userName,
             token
         };
     } catch (error) {
-        throw new ErrorResponse(httpStatus.UNAUTHORIZED, 'Account signin failed');
+        throw new ErrorResponse(httpStatus.UNAUTHORIZED, error);
     }
 };
 

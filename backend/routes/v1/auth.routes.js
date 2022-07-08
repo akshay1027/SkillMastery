@@ -12,6 +12,6 @@ const {
 router.post('/signin', signInUser);
 router.post('/register', createNewUser);
 // authorised routes
-router.patch('/change-password', authenticationVerifier, changePassword)
+router.patch('/password', authenticationVerifier, changePassword)
 
 module.exports = router;
