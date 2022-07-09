@@ -1,3 +1,15 @@
+Backend :
+- [x] folder setup
+- [ ] global error handling, middleware
+- [ ] sign in, sign up service
+- [ ] token service, no refresh token yet
+
+
+Frontend :
+
+
+Models:
+
 Teacher: name  
          username  
          email  
@@ -64,8 +76,12 @@ Ability for user and tutor to exchange messages or request demo!
 USP = Promote cohort based learning
 
 
+Challenges while developing:
 
-
+1) Revamped skills model from array to a map data structure as insertion and deletion time is O(1) and order of elements doesnot matter as much.
+2) Seperating out code into different sections to follow modular approach.
+3) Building custome global error handling middleware.
+4) 
 
 
 

@@ -29,9 +29,9 @@ const createNewUser = async (userData) => {
 
         if (isUserExistingEmail || isUserExistingUserName) {
             // console.log(user);
-            throw new ErrorResponse(httpStatus.CONFLICT, "Account already exists for this email or/and phone number");
+            throw new ErrorResponse(httpStatus.CONFLICT, "Account already exists for this email and/or username");
         }
-        const salt = await bcrypt.genSalt(10);
+        const salt = await bcrypt.genSalt(5);
         userData.password = await bcrypt.hash(password, salt);
 
         const newUser = new UserModel(userData);
@@ -45,7 +45,7 @@ const createNewUser = async (userData) => {
 
     } catch (error) {
         console.log(error)
-        throw new ErrorResponse(httpStatus.UNAUTHORIZED, 'Account creation failed');
+        throw new ErrorResponse(httpStatus.UNAUTHORIZED, error);
     }
 };
 
@@ -70,15 +70,41 @@ const signInUser = async (userData) => {
         const token = getToken(user._id);
 
         return {
-            userName,
+            username: user.userName,
             token
         };
     } catch (error) {
-        throw new ErrorResponse(httpStatus.UNAUTHORIZED, 'Account signin failed');
+        throw new ErrorResponse(httpStatus.UNAUTHORIZED, error);
     }
 };
 
+const changePassword = async (data, user) => {
+    try {
+        const { currentPassword, newPassword } = data;
+
+        const isPasswordValid = await bcrypt.compare(currentPassword, user?.password);
+        if (!isPasswordValid) {
+            throw new ErrorResponse(httpStatus.FORBIDDEN, 'Current password is incorrect!');
+        }
+
+        const userData = await UserModel.findById({ id: user.id })
+
+        const salt = await bcrypt.genSalt(10);
+        userData.password = await bcrypt.hash(newPassword, salt);
+        userData.save();
+
+        return {
+            status: 'success',
+            message: 'Account password has been updated successfully'
+        }
+
+    } catch (error) {
+        throw new ErrorResponse(500, 'Password not changed');
+    }
+}
+
 module.exports = {
     createNewUser,
-    signInUser
+    signInUser,
+    changePassword
 }

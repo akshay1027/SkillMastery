@@ -14,13 +14,14 @@ const authenticationVerifier = async (req, res, next) => {
         const decoded = jwt.verify(token, JWT_KEY);
 
         const userId = decoded.userId;
-        const user = await UserModel.findOne(userId);
+        const user = await UserModel.findById(userId);
 
         if (!user) {
             res.status(httpStatus.UNAUTHORIZED).json({ message: 'Unauthorised access' })
             return;
         }
 
+        // store user object inside request object
         req.user = user;
         next();
     } catch (error) {
