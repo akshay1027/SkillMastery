@@ -1,5 +1,5 @@
 # API DOCS
-**1. Authentication service**
+*1. Authentication service*
 * **1. URL**
     `/api/v1/auth/login`
 
