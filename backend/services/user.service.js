@@ -2,6 +2,7 @@ const UserModel = require('../models/user.model');
 const ReviewModel = require('../models/review.model');
 
 const ErrorResponse = require('../utils/errorResponse');
+const httpStatus = require('../utils/httpStatusCode');
 
 // const getUserDetails = async (user) => {
 //     try {
@@ -18,7 +19,6 @@ const ErrorResponse = require('../utils/errorResponse');
 
 const createUserSkills = async (user, skills) => {
     try {
-
         const userData = await UserModel.findById({ id: user.id })
 
         // for (let skill in skills) {
@@ -35,7 +35,7 @@ const createUserSkills = async (user, skills) => {
         }
     } catch (error) {
         console.error(error);
-        throw new ErrorResponse(500, 'Request failed, internal server error');
+        throw new ErrorResponse(httpStatus.INTERNAL_SERVER_ERROR, 'Request failed, internal server error');
     }
 }
 
@@ -47,7 +47,7 @@ const updateUserSkills = async (req, res) => {
         const userData = await UserModel.findById({ id: user.id });
 
         // userData.skills.push(...skills);
-        // ⭐⚠ i think you cant push like that, it wont work if any skills may be deleted!
+        // ⭐⚠ i think you cant push like that, it wont work if any previous skills may be deleted!
         userData.skills.push(skills);
 
         const newUserData = new UserModel(userData);

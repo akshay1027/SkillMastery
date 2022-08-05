@@ -14,7 +14,6 @@ const createNewUser = async (userData) => {
         }
 
         const oneAlphaNumuricRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
-        // /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/
 
         if (password.length <= 5) {
             throw new ErrorResponse(httpStatus.FORBIDDEN, "Password length has to be more than 7 characters!");

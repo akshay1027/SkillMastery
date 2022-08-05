@@ -1,8 +1,44 @@
+# API DOCS
+**1. Authentication service**
+* **1. URL**
+    `/api/v1/auth/login`
+
+* **METHOD**
+    `POST`
+
+* **Required Filed**
+    * **Auth Need : False**
+    * **Admin Auth Need : False**
+
+* **2. URL**
+    `/api/v1/auth/register`
+
+* **METHOD**
+    `POST`
+
+* **Required Filed**
+    * **Auth Need : False**
+    * **Admin Auth Need : False**
+
+* **3. URL**
+    `/api/v1/auth/password`
+
+* **METHOD**
+    `POST`
+
+`**NOTE**: in the headers you have to pass authorize token and you can get token by signin API `
+
+* **Required Filed**
+    * **Auth Need : True**
+    * **Admin Auth Need : False**
+
+
+
 Backend :
 - [x] folder setup
-- [ ] global error handling, middleware
-- [ ] sign in, sign up service
-- [ ] token service, no refresh token yet
+- [x] global error handling, middleware
+- [x] sign in, sign up service
+- [x] token service, no refresh token yet
 
 
 Frontend :

@@ -21,7 +21,7 @@ const UserSchema = new Schema(
         ],
         teach: { type: Boolean },
         reviews: { type: Schema.Types.ObjectId, ref: 'Review' }, // reviews given by the user
-        reviewsTutor: { type: Schema.Types.ObjectId, ref: 'Review' }, // reviews given got the user, if he/she is a teacher
+        reviewsTutor: { type: Schema.Types.ObjectId, ref: 'Review' }, // reviews got by the user, if he/she is a teacher
         address: [
             { type: String }
         ],
