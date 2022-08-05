@@ -21,6 +21,6 @@ router.post('/skills', authenticationVerifier, createUserSkills);
 router.put('/skills', authenticationVerifier, updateUserSkills);
 router.get('/skills', authenticationVerifier);
 
-router.post('/review', authenticationVerifier, createReviewForTutor);
+router.post('/review/:tutorId', authenticationVerifier, createReviewForTutor);
 // router.put('/review/:tutorId', authenticationVerifier, updateReviewForTutor);
 module.exports = router;

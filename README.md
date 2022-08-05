@@ -1,6 +1,8 @@
 # API DOCS
-*1. Authentication service*
-* **1. URL**
+
+## *1. Authentication service*
+
+* **1. ENDPOINT**
     `/api/v1/auth/login`
 
 * **METHOD**
@@ -10,7 +12,7 @@
     * **Auth Need : False**
     * **Admin Auth Need : False**
 
-* **2. URL**
+* **2. ENDPOINT**
     `/api/v1/auth/register`
 
 * **METHOD**
@@ -20,13 +22,88 @@
     * **Auth Need : False**
     * **Admin Auth Need : False**
 
-* **3. URL**
+* **3. ENDPOINT**
     `/api/v1/auth/password`
 
 * **METHOD**
     `POST`
 
-`**NOTE**: in the headers you have to pass authorize token and you can get token by signin API `
+* `**NOTE**: in the headers you have to pass authorize token and you can get token by signin API `
+
+* **Required Filed**
+    * **Auth Need : True**
+    * **Admin Auth Need : False**
+
+## *2. User service*
+
+* **1. ENDPOINT**
+    `/api/v1/user/skills`
+
+* **METHOD**
+    `POST`
+
+* **Required Filed**
+    * **Auth Need : True**
+    * **Admin Auth Need : False**
+
+* **2. ENDPOINT**
+    `/api/v1/user/skills`
+
+* **METHOD**
+    `PUT`
+
+* **Required Filed**
+    * **Auth Need : True**
+    * **Admin Auth Need : False**
+
+* **3. ENDPOINT**
+    `/api/v1/user/skills`
+
+* **METHOD**
+    `GET`
+
+* **Required Filed**
+    * **Auth Need : True**
+    * **Admin Auth Need : False**
+
+* **4. ENDPOINT**
+    `/api/v1/user/review/:tutorId`
+
+* **METHOD**
+    `POST`
+ 
+* **Required Filed**
+    * **Auth Need : True**
+    * **Admin Auth Need : False**
+
+
+## *3. Tutor service*
+
+* **1. ENDPOINT**
+    `/api/v1/tutor/`
+
+* **METHOD**
+    `GET`
+
+* **Required Filed**
+    * **Auth Need : False**
+    * **Admin Auth Need : False**
+
+* **2. ENDPOINT**
+    `/api/v1/tutor/:tutorId`
+
+* **METHOD**
+    `GET`
+
+* **Required Filed**
+    * **Auth Need : True**
+    * **Admin Auth Need : False**
+
+* **3. ENDPOINT**
+    `/api/v1/tutor/reviews/:tutorId`
+
+* **METHOD**
+    `GET`
 
 * **Required Filed**
     * **Auth Need : True**

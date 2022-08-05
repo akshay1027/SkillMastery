@@ -53,7 +53,10 @@ const updateUserSkills = async (req, res) => {
         const newUserData = new UserModel(userData);
         await newUserData.save();
 
-        res.status(200).json({ message: 'skills updated' });
+        return {
+            status: 'successful',
+            message: 'skills updated'
+        }
     } catch (error) {
         console.error(error);
         throw new ErrorResponse(500, 'Request failed, internal server error');
