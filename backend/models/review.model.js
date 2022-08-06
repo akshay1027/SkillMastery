@@ -5,7 +5,7 @@ const ReviewSchema = new Schema(
         reviews: [
             {
                 userName: { type: String },
-                message: { type: String },
+                comment: { type: String },
                 tutorId: { type: String }
             }
         ]
