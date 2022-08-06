@@ -46,7 +46,7 @@ const updateUserSkills = async (user, skills) => {
         const userData = await UserModel.findById({ id: user.id });
 
         // userData.skills.push(...skills);
-        // ⭐⚠ i think you cant push like that, it wont work if any previous skills may be deleted!
+        // ⭐i think you cant push like that, it wont work if any previous skills may be deleted!
 
         userData.skills.push(...skills);
 
