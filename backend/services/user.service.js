@@ -31,7 +31,8 @@ const createUserSkills = async (user, skills) => {
 
         return {
             status: 'successful',
-            message: 'skills added'
+            message: 'skills added',
+            response: userData.skills
         }
     } catch (error) {
         console.error(error);
@@ -40,39 +41,35 @@ const createUserSkills = async (user, skills) => {
 }
 
 // to remove duplicate skills from array : https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/
-const updateUserSkills = async (req, res) => {
+const updateUserSkills = async (user, skills) => {
     try {
-        const { user } = req;
-        const { skills } = req.body;
         const userData = await UserModel.findById({ id: user.id });
 
         // userData.skills.push(...skills);
         // ⭐⚠ i think you cant push like that, it wont work if any previous skills may be deleted!
-        userData.skills.push(skills);
 
-        const newUserData = new UserModel(userData);
-        await newUserData.save();
+        userData.skills.push(...skills);
+
+        // const newUserData = new UserModel(userData);
+        await userData.save();
 
         return {
             status: 'successful',
-            message: 'skills updated'
+            message: 'skills updated',
+            response: userData.skills
         }
     } catch (error) {
         console.error(error);
-        throw new ErrorResponse(500, 'Request failed, internal server error');
+        throw new ErrorResponse(httpStatus.INTERNAL_SERVER_ERROR, 'Request failed, internal server error');
     }
 }
 
-const createReviewForTutor = async (req, res) => {
+const createReviewForTutor = async (tutorId, user, comment) => {
     try {
-        const tutorId = req.params.tutorId;
-        const { message } = req.body; // this contains only message
-        const { user } = req;
-
         // create an object of the user who made the review, the message and the tutorId(just incase i might have to show all the reviews a user has made)
         const review = {
             userName: user.userName,
-            message: message,
+            comment: comment,
             tutorId: tutorId
         };
 
@@ -89,15 +86,19 @@ const createReviewForTutor = async (req, res) => {
         userData.review.push(saveReview._id);
 
         // save the documents of user and tutor to db
-        const newUserData = new UserModel(userData);
-        await newUserData.save();
-        const newTutorData = new UserModel(tutorData);
-        await newTutorData.save();
+        // const newUserData = new UserModel(userData);
+        await userData.save();
+        // const newTutorData = new UserModel(tutorData);
+        await tutorData.save();
 
-        res.status(200).json({ message: 'Review added!' });
+        return {
+            status: 'successful',
+            message: 'review added',
+            response: review
+        }
     } catch (error) {
         console.error(error);
-        throw new ErrorResponse(500, 'Request failed, internal server error');
+        throw new ErrorResponse(httpStatus.INTERNAL_SERVER_ERROR, 'Request failed, internal server error');
     }
 }
 
