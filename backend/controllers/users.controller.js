@@ -1,5 +1,6 @@
 
 const asyncHandler = require("../middlewares/asyncHandler.middleware");
+const httpStatus = require("../utils/httpStatusCode");
 
 const userService = require("../services/user.service");
 
@@ -7,7 +8,7 @@ const getUserDetails = asyncHandler(async (req, res) => {
     const { user } = req;
 
     // const { email, firstname, lastname } = await userService.getUserDetails(user);
-    res.status(200).json({
+    res.status(httpStatus.OK).json({
         email: user.email,
         firstname: user.firstname,
         lastname: user.lastname,
@@ -19,11 +20,11 @@ const createUserSkills = asyncHandler(async (req, res) => {
     const { user } = req;
     const { skills } = req.body;
 
-    const { status, message } = await userService.createUserSkills(user, skills);
+    const { status, message, response } = await userService.createUserSkills(user, skills);
 
-    res.status(200).json({
+    res.status(httpStatus.OK).json({
         status,
-        message
+        response
     });
 });
 
@@ -32,48 +33,26 @@ const createUserSkills = asyncHandler(async (req, res) => {
 const updateUserSkills = asyncHandler(async (req, res) => {
     const { user } = req;
     const { skills } = req.body;
-    const userData = await UserModel.findById({ id: user.id });
 
-    // userData.skills.push(...skills);
-    userData.skills.push(skills);
+    const { status, message, response } = await userService.updateUserSkills(user, skills)
 
-    const newUserData = new UserModel(userData);
-    await newUserData.save();
-
-    res.status(200).json({ message: 'skills updated' });
+    res.status(httpStatus.OK).json({
+        status,
+        response
+    });
 });
 
 const createReviewForTutor = asyncHandler(async (req, res) => {
     const tutorId = req.params.tutorId;
-    const { message } = req.body; // this contains only message
+    const { comment } = req.body; // this contains only message
     const { user } = req;
 
-    // create an object of the user who made the review, the message and the tutorId(just incase i might have to show all the reviews a user has made)
-    const review = {
-        userName: user.userName,
-        message: message,
-        tutorId: tutorId
-    };
+    const { status, message, response } = userService.createReviewForTutor(tutorId, user, comment)
 
-    // save the review to review collection
-    const saveReview = new ReviewModel(review);
-    await saveReview.save();
-
-    // find the user who made the review and the tutor on whom the review is made
-    const userData = await UserModel.findById({ id: user._id });
-    const tutorData = await UserModel.findById({ id: tutorId });
-
-    // update the review in both user and tutor document seperately
-    tutorData.reviewTutor.push(saveReview._id);
-    userData.review.push(saveReview._id);
-
-    // save the documents of user and tutor to db
-    const newUserData = new UserModel(userData);
-    await newUserData.save();
-    const newTutorData = new UserModel(tutorData);
-    await newTutorData.save();
-
-    res.status(200).json({ message: 'Review added!' });
+    res.status(httpStatus.OK).json({
+        status,
+        response
+    });
 });
 
 module.exports = {
