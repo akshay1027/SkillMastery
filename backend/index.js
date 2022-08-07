@@ -5,10 +5,9 @@ const dotenv = require('dotenv');  //  Keep sensitive data
 
 const connectToDb = require('./utils/connectToDb');
 const redisClient = require('./utils/redisCache');
-const rateLimiter = require('./utils/rateLimiter');
-
 
 // Middleware
+const { customeRateLimiter } = require('./middlewares/rateLimiter.middleware');
 const errorHandler = require('./middlewares/errorHandler.middleware');
 const routeNotFound = require('./middlewares/routeNotFound.middleware')
 
@@ -29,7 +28,7 @@ connectToDb();
 redisClient();
 
 // rate limiting clients based on ip address
-app.use(rateLimiter);
+app.use(customeRateLimiter);
 
 // check if server is running
 app.get('/', (req, res) => {
@@ -53,7 +52,7 @@ app.use('*', routeNotFound)
 
 
 // server config listen to PORT
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`server started at PORT ${PORT}`);
 })

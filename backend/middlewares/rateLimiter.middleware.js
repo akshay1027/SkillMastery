@@ -9,7 +9,7 @@ const WINDOW_SIZE_IN_HOURS = 24;
 const MAX_WINDOW_REQUEST_COUNT = 10;
 const WINDOW_LOG_INTERVAL_IN_HOURS = 1;
 
-const rateLimiter = async (req, res, next) => {
+export const customeRateLimiter = async (req, res, next) => {
     await redisClient.connect();
     try {
         // check that redis client exists
@@ -67,4 +67,4 @@ const rateLimiter = async (req, res, next) => {
     }
 };
 
-module.exports = rateLimiter
+// module.exports = customeRateLimiter
