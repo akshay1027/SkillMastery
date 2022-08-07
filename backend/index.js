@@ -4,10 +4,14 @@ const morgan = require('morgan'); // Logging
 const dotenv = require('dotenv');  //  Keep sensitive data
 
 const connectToDb = require('./utils/connectToDb');
+const redisClient = require('./utils/redisCache');
+const rateLimiter = require('./utils/rateLimiter');
+
 
 // Middleware
 const errorHandler = require('./middlewares/errorHandler.middleware');
 const routeNotFound = require('./middlewares/routeNotFound.middleware')
+
 
 // App Routes 
 const appRoutes = require('./routes/v1/index');
@@ -22,6 +26,10 @@ app.use(morgan('combined'))
 dotenv.config();
 
 connectToDb();
+redisClient();
+
+// rate limiting clients based on ip address
+app.use(rateLimiter);
 
 // check if server is running
 app.get('/', (req, res) => {
@@ -41,6 +49,8 @@ process.on('unhandledRejection', unexpectedErrorHandler);
 
 // 404 route not found
 app.use('*', routeNotFound)
+
+
 
 // server config listen to PORT
 const PORT = process.env.PORT || 5001;

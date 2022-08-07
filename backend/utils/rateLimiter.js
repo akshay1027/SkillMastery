@@ -1,14 +1,15 @@
 import moment from 'moment';
-import redis from 'redis';
+import redisClient from '../utils/redisCache';
+// import redis from 'redis';
 
-const redisClient = redis.createClient();
+// const redisClient = redis.createClient();
 redisClient.on('error', (err) => console.log('Redis Client Error', err));
 
 const WINDOW_SIZE_IN_HOURS = 24;
-const MAX_WINDOW_REQUEST_COUNT = 100;
+const MAX_WINDOW_REQUEST_COUNT = 10;
 const WINDOW_LOG_INTERVAL_IN_HOURS = 1;
 
-export const customRedisRateLimiter = async (req, res, next) => {
+const rateLimiter = async (req, res, next) => {
     await redisClient.connect();
     try {
         // check that redis client exists
@@ -65,3 +66,5 @@ export const customRedisRateLimiter = async (req, res, next) => {
         next(error);
     }
 };
+
+module.exports = rateLimiter
