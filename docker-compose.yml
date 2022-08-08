@@ -1,24 +1,26 @@
-# version: '3.8'
-redis:
-  image: 'redislabs/redismod'
-  ports:
-    - '6379:6379'
-web1:
-  restart: on-failure
-  build: ./backend
-  hostname: web1
-  ports:
-    - '81:5000'
-web2:
-  restart: on-failure
-  build: ./backend
-  hostname: web2
-  ports:
-    - '82:5000'
-nginx:
-  build: ./nginx
-  ports:
-    - '80:80'
-  # depends_on:
-  #   - web1
-  #   - web2
+# version: '3.8' 
+# delete all images : docker rmi $ (docker images -a -q)
+services:
+  redis:
+    image: 'redislabs/redismod'
+    ports:
+      - '6379:6379'
+  web1:
+    restart: on-failure
+    build: ./backend
+    hostname: web1
+    ports:
+      - '81:5000'
+  web2:
+    restart: on-failure
+    build: ./backend
+    hostname: web2
+    ports:
+      - '82:5000'
+  nginx:
+    build: ./nginx
+    ports:
+      - '80:80'
+    depends_on:
+      - web1
+      - web2
